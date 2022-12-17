@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NativeBaseProvider } from 'native-base';
+import { Oxanium_600SemiBold, useFonts } from '@expo-google-fonts/oxanium'
+
+import { Pokedex } from './src';
+import { Loading } from './src/components/Loading';
+import { THEME } from './src/styles/theme';
 
 export default function App() {
+  const fontsLoaded = useFonts({
+    Oxanium_600SemiBold
+  })
+
+  if (!fontsLoaded) {
+    <Loading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider theme={THEME}>
+      <Pokedex />
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
